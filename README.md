@@ -123,9 +123,9 @@ test@030bf2d85156:~$ curl -v --http2 https://http2-h2:8080 --insecure
 curl -v --http2 https://http_ssl_not_http2:8080 --insecure
 ```
 ```
-test@030bf2d85156:~$ curl -v --http2 https://http2-h2:8080 --insecure
-*   Trying 10.10.10.4:8080...
-* Connected to http2-h2 (10.10.10.4) port 8080 (#0)
+test@996ebfec1b65:~$ curl -v --http2 https://http_ssl_not_http2:8080 --insecure
+*   Trying 10.10.10.6:8080...
+* Connected to http_ssl_not_http2 (10.10.10.6) port 8080 (#0)
 * ALPN, offering h2
 * ALPN, offering http/1.1
 * TLSv1.0 (OUT), TLS header, Certificate Status (22):
@@ -143,47 +143,35 @@ test@030bf2d85156:~$ curl -v --http2 https://http2-h2:8080 --insecure
 * TLSv1.2 (OUT), TLS header, Supplemental data (23):
 * TLSv1.3 (OUT), TLS handshake, Finished (20):
 * SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
-* ALPN, server accepted to use h2
+* ALPN, server did not agree to a protocol
 * Server certificate:
 *  subject: CN=localhost
 *  start date: Oct 15 15:43:16 2022 GMT
 *  expire date: Nov 14 15:43:16 2022 GMT
 *  issuer: CN=localhost
 *  SSL certificate verify result: self-signed certificate (18), continuing anyway.
-* Using HTTP2, server supports multiplexing
-* Connection state changed (HTTP/2 confirmed)
-* Copying HTTP/2 data in stream buffer to connection buffer after upgrade: len=0
 * TLSv1.2 (OUT), TLS header, Supplemental data (23):
-* TLSv1.2 (OUT), TLS header, Supplemental data (23):
-* TLSv1.2 (OUT), TLS header, Supplemental data (23):
-* Using Stream ID: 1 (easy handle 0x5653aed22e80)
-* TLSv1.2 (OUT), TLS header, Supplemental data (23):
-> GET / HTTP/2
-> Host: http2-h2:8080
-> user-agent: curl/7.81.0
-> accept: */*
+> GET / HTTP/1.1
+> Host: http_ssl_not_http2:8080
+> User-Agent: curl/7.81.0
+> Accept: */*
 >
 * TLSv1.2 (IN), TLS header, Supplemental data (23):
 * TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
 * TLSv1.2 (IN), TLS header, Supplemental data (23):
-* TLSv1.2 (OUT), TLS header, Supplemental data (23):
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
-* TLSv1.2 (OUT), TLS header, Supplemental data (23):
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
-< HTTP/2 404
-< vary: Origin
-< vary: Access-Control-Request-Method
-< vary: Access-Control-Request-Headers
-< content-type: application/json
-< date: Sat, 15 Oct 2022 15:58:00 GMT
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 400
+< Content-Type: text/html;charset=utf-8
+< Content-Language: en
+< Content-Length: 435
+< Date: Mon, 17 Oct 2022 10:38:07 GMT
+< Connection: close
 <
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
-* Connection #0 to host http2-h2 left intact
+* Closing connection 0
+* TLSv1.2 (OUT), TLS header, Supplemental data (23):
+* TLSv1.3 (OUT), TLS alert, close notify (256):
 
-
-// dùng http 2 thành công, vì vậy dùng http2
+// update h2 khong thanh cong vi server khong ho tro h2, vi vay dung http1.1
 ```
 
 # RUN for http1.1:
