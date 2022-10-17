@@ -118,6 +118,73 @@ test@030bf2d85156:~$ curl -v --http2 https://http2-h2:8080 --insecure
 
 // dùng http 2 thành công, vì vậy dùng http2
 ```
+# RUN for nang cấp h2 ssl nhưng chỉ hỗ tợ ssl không hỗ tro h2:
+```
+curl -v --http2 https://http_ssl_not_http2:8080 --insecure
+```
+```
+test@030bf2d85156:~$ curl -v --http2 https://http2-h2:8080 --insecure
+*   Trying 10.10.10.4:8080...
+* Connected to http2-h2 (10.10.10.4) port 8080 (#0)
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* TLSv1.0 (OUT), TLS header, Certificate Status (22):
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+* TLSv1.2 (IN), TLS header, Certificate Status (22):
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+* TLSv1.2 (IN), TLS header, Finished (20):
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+* TLSv1.2 (OUT), TLS header, Finished (20):
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.2 (OUT), TLS header, Supplemental data (23):
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+* ALPN, server accepted to use h2
+* Server certificate:
+*  subject: CN=localhost
+*  start date: Oct 15 15:43:16 2022 GMT
+*  expire date: Nov 14 15:43:16 2022 GMT
+*  issuer: CN=localhost
+*  SSL certificate verify result: self-signed certificate (18), continuing anyway.
+* Using HTTP2, server supports multiplexing
+* Connection state changed (HTTP/2 confirmed)
+* Copying HTTP/2 data in stream buffer to connection buffer after upgrade: len=0
+* TLSv1.2 (OUT), TLS header, Supplemental data (23):
+* TLSv1.2 (OUT), TLS header, Supplemental data (23):
+* TLSv1.2 (OUT), TLS header, Supplemental data (23):
+* Using Stream ID: 1 (easy handle 0x5653aed22e80)
+* TLSv1.2 (OUT), TLS header, Supplemental data (23):
+> GET / HTTP/2
+> Host: http2-h2:8080
+> user-agent: curl/7.81.0
+> accept: */*
+>
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+* TLSv1.2 (OUT), TLS header, Supplemental data (23):
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+* TLSv1.2 (OUT), TLS header, Supplemental data (23):
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+< HTTP/2 404
+< vary: Origin
+< vary: Access-Control-Request-Method
+< vary: Access-Control-Request-Headers
+< content-type: application/json
+< date: Sat, 15 Oct 2022 15:58:00 GMT
+<
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+* Connection #0 to host http2-h2 left intact
+
+
+// dùng http 2 thành công, vì vậy dùng http2
+```
 
 # RUN for http1.1:
 ```

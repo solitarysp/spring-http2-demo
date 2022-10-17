@@ -1,12 +1,13 @@
-package com.lethanh98.http.h11;
+package com.lethanh98.http.h2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AppStar11 {
+public class AppStart {
 
   public static void main(String[] args) {
-    SpringApplication.run(AppStar11.class, args);
+    SpringApplication.run(AppStart.class, args);
   }
+
 }

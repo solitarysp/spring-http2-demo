@@ -23,6 +23,7 @@
   <modules>
     <module>http2-h2c</module>
     <module>http2-h2</module>
+    <module>http_ssl_not_http2</module>
     <module>http1.1</module>
   </modules>
 </project>

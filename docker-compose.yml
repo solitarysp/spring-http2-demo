@@ -48,6 +48,18 @@ services:
     networks:
       web-demo:
         ipv4_address: 10.10.10.5
+  http_ssl_not_http2:
+    build: /http_ssl_not_http2/.
+    image: http_ssl_not_http2
+    container_name: http_ssl_not_http2
+    volumes:
+      - ./http_ssl_not_http2/build/app.jar:/data/projects/app/app.jar
+    ports:
+      - 8006:8080
+    restart: always
+    networks:
+      web-demo:
+        ipv4_address: 10.10.10.6
 networks:
   web-demo:
     driver: bridge

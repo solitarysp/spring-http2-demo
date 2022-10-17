@@ -1,4 +1,4 @@
-package com.lehtanh98.http2.http;
+package com.lehtanh98.http2.h2c;
 
 import static io.undertow.UndertowOptions.ENABLE_HTTP2;
 
