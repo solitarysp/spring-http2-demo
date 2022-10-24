@@ -105,55 +105,47 @@ root@738c7e973b16:/# curl -v --http2 https://http2-h2 --insecure
 ```
 # RUN for nang cấp h2 ssl nhưng chỉ hỗ tợ ssl không hỗ tro h2:
 ```
-curl -v --http2 https://http_ssl_not_http2:8080 --insecure
+curl -v --http2 https://http_ssl_not_http2 --insecure
+curl -v --http2 https://http_ssl_not_http2 --insecure  --trace /path/to/trace.log
+
 ```
 ```
-test@996ebfec1b65:~$ curl -v --http2 https://http_ssl_not_http2:8080 --insecure
-*   Trying 10.10.10.6:8080...
-* Connected to http_ssl_not_http2 (10.10.10.6) port 8080 (#0)
-* ALPN, offering h2
-* ALPN, offering http/1.1
-* TLSv1.0 (OUT), TLS header, Certificate Status (22):
+root@d9f0d6dfb0c4:/# curl -v --http2 https://http_ssl_not_http2 --insecure
+*   Trying 10.10.10.6:443...
+* Connected to http_ssl_not_http2 (10.10.10.6) port 443 (#0)
+* ALPN: offers h2
+* ALPN: offers http/1.1
 * TLSv1.3 (OUT), TLS handshake, Client hello (1):
-* TLSv1.2 (IN), TLS header, Certificate Status (22):
 * TLSv1.3 (IN), TLS handshake, Server hello (2):
-* TLSv1.2 (IN), TLS header, Finished (20):
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
 * TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
 * TLSv1.3 (IN), TLS handshake, Certificate (11):
 * TLSv1.3 (IN), TLS handshake, CERT verify (15):
 * TLSv1.3 (IN), TLS handshake, Finished (20):
-* TLSv1.2 (OUT), TLS header, Finished (20):
 * TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
-* TLSv1.2 (OUT), TLS header, Supplemental data (23):
 * TLSv1.3 (OUT), TLS handshake, Finished (20):
 * SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
-* ALPN, server did not agree to a protocol
+* ALPN: server did not agree on a protocol. Uses default.
 * Server certificate:
 *  subject: CN=localhost
 *  start date: Oct 15 15:43:16 2022 GMT
 *  expire date: Nov 14 15:43:16 2022 GMT
 *  issuer: CN=localhost
-*  SSL certificate verify result: self-signed certificate (18), continuing anyway.
-* TLSv1.2 (OUT), TLS header, Supplemental data (23):
+*  SSL certificate verify result: self signed certificate (18), continuing anyway.
 > GET / HTTP/1.1
-> Host: http_ssl_not_http2:8080
-> User-Agent: curl/7.81.0
+> Host: http_ssl_not_http2
+> User-Agent: curl/7.83.1
 > Accept: */*
 >
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
 * TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
 * Mark bundle as not supporting multiuse
 < HTTP/1.1 400
 < Content-Type: text/html;charset=utf-8
 < Content-Language: en
 < Content-Length: 435
-< Date: Mon, 17 Oct 2022 10:38:07 GMT
+< Date: Mon, 24 Oct 2022 15:51:28 GMT
 < Connection: close
 <
 * Closing connection 0
-* TLSv1.2 (OUT), TLS header, Supplemental data (23):
 * TLSv1.3 (OUT), TLS alert, close notify (256):
 
 // update h2 khong thanh cong vi server khong ho tro h2, vi vay dung http1.1
