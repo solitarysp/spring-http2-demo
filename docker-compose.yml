@@ -60,6 +60,27 @@ services:
     networks:
       web-demo:
         ipv4_address: 10.10.10.6
+  wireshark:
+    image: lscr.io/linuxserver/wireshark:latest
+    container_name: wireshark
+    cap_add:
+      - NET_ADMIN
+    security_opt:
+      - seccomp:unconfined #optional
+    networks:
+      web-demo:
+        ipv4_address: 10.10.10.7
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - /path/to/config:/config
+    ports:
+      - 8007:3000 #optional
+    restart: unless-stopped
+    command:
+      - apk add curl
 networks:
   web-demo:
     driver: bridge
