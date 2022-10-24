@@ -53,66 +53,51 @@ curl -v --http2 http2-h2c:8080
 
 # RUN for h2:
 ```
-curl -v --http2 https://http2-h2:8080 --insecure
+curl -v --http2 https://http2-h2 --insecure
+curl -iv --http2 https://http2-h2 --insecure --trace /path/to/trace.log
 ```
 ```
-test@030bf2d85156:~$ curl -v --http2 https://http2-h2:8080 --insecure
-*   Trying 10.10.10.4:8080...
-* Connected to http2-h2 (10.10.10.4) port 8080 (#0)
-* ALPN, offering h2
-* ALPN, offering http/1.1
-* TLSv1.0 (OUT), TLS header, Certificate Status (22):
+root@738c7e973b16:/# curl -v --http2 https://http2-h2 --insecure
+*   Trying 10.10.10.4:443...
+* Connected to http2-h2 (10.10.10.4) port 443 (#0)
+* ALPN: offers h2
+* ALPN: offers http/1.1
 * TLSv1.3 (OUT), TLS handshake, Client hello (1):
-* TLSv1.2 (IN), TLS header, Certificate Status (22):
 * TLSv1.3 (IN), TLS handshake, Server hello (2):
-* TLSv1.2 (IN), TLS header, Finished (20):
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
 * TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
 * TLSv1.3 (IN), TLS handshake, Certificate (11):
 * TLSv1.3 (IN), TLS handshake, CERT verify (15):
 * TLSv1.3 (IN), TLS handshake, Finished (20):
-* TLSv1.2 (OUT), TLS header, Finished (20):
 * TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
-* TLSv1.2 (OUT), TLS header, Supplemental data (23):
 * TLSv1.3 (OUT), TLS handshake, Finished (20):
 * SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
-* ALPN, server accepted to use h2
+* ALPN: server accepted h2
 * Server certificate:
 *  subject: CN=localhost
 *  start date: Oct 15 15:43:16 2022 GMT
 *  expire date: Nov 14 15:43:16 2022 GMT
 *  issuer: CN=localhost
-*  SSL certificate verify result: self-signed certificate (18), continuing anyway.
+*  SSL certificate verify result: self signed certificate (18), continuing anyway.
 * Using HTTP2, server supports multiplexing
-* Connection state changed (HTTP/2 confirmed)
 * Copying HTTP/2 data in stream buffer to connection buffer after upgrade: len=0
-* TLSv1.2 (OUT), TLS header, Supplemental data (23):
-* TLSv1.2 (OUT), TLS header, Supplemental data (23):
-* TLSv1.2 (OUT), TLS header, Supplemental data (23):
-* Using Stream ID: 1 (easy handle 0x5653aed22e80)
-* TLSv1.2 (OUT), TLS header, Supplemental data (23):
+* h2h3 [:method: GET]
+* h2h3 [:path: /]
+* h2h3 [:scheme: https]
+* h2h3 [:authority: http2-h2]
+* h2h3 [user-agent: curl/7.83.1]
+* h2h3 [accept: */*]
+* Using Stream ID: 1 (easy handle 0x7f7f52b3f1a0)
 > GET / HTTP/2
-> Host: http2-h2:8080
-> user-agent: curl/7.81.0
+> Host: http2-h2
+> user-agent: curl/7.83.1
 > accept: */*
 >
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
 * TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
-* TLSv1.2 (OUT), TLS header, Supplemental data (23):
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
-* TLSv1.2 (OUT), TLS header, Supplemental data (23):
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
-< HTTP/2 404
-< vary: Origin
-< vary: Access-Control-Request-Method
-< vary: Access-Control-Request-Headers
-< content-type: application/json
-< date: Sat, 15 Oct 2022 15:58:00 GMT
+< HTTP/2 200
+< content-type: text/plain;charset=UTF-8
+< content-length: 5
+< date: Mon, 24 Oct 2022 15:41:37 GMT
 <
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
-* TLSv1.2 (IN), TLS header, Supplemental data (23):
 * Connection #0 to host http2-h2 left intact
 
 
