@@ -75,12 +75,10 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - /path/to/config:/config
+      - ./config/wireshark/path/to/config:/config
     ports:
       - 8007:3000 #optional
     restart: unless-stopped
-    command:
-      - apk add curl
 networks:
   web-demo:
     driver: bridge
