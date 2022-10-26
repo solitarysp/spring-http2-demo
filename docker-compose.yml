@@ -1,19 +1,19 @@
 version: '3'
 
 services:
-  ssh-server:
-    build: .
-    image: docker-ubuntu-ssh-server
-    container_name: docker-ubuntu-ssh-server
-    networks:
-      web-demo:
-        ipv4_address: 10.10.10.2
-    ports:
-      - "8001:22/udp"
-      - "8002:22/tcp"
-    restart: always
+#  ssh-server:
+#    build: .
+#    image: docker-ubuntu-ssh-server
+#    container_name: docker-ubuntu-ssh-server
+#    networks:
+#      web-demo:
+#        ipv4_address: 10.10.10.2
+#    ports:
+#      - "8001:22/udp"
+#      - "8002:22/tcp"
+#    restart: always
   http2-h2c:
-    build: /http2-h2c/.
+    build: ./http2-h2c/
     image: http2-h2c
     container_name: http2-h2c
     volumes:
@@ -25,7 +25,7 @@ services:
       web-demo:
         ipv4_address: 10.10.10.3
   http2-h2:
-    build: /http2-h2/.
+    build: ./http2-h2/
     image: http2-h2
     container_name: http2-h2
     volumes:
@@ -37,7 +37,7 @@ services:
       web-demo:
         ipv4_address: 10.10.10.4
   http1.1:
-    build: /http1.1/.
+    build: ./http1.1/
     image: http1.1
     container_name: http1.1
     volumes:
@@ -49,7 +49,7 @@ services:
       web-demo:
         ipv4_address: 10.10.10.5
   http_ssl_not_http2:
-    build: /http_ssl_not_http2/.
+    build: ./http_ssl_not_http2/
     image: http_ssl_not_http2
     container_name: http_ssl_not_http2
     volumes:
@@ -75,8 +75,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-    volumes:
-      - ./config/wireshark/path/to/config:/config
     ports:
       - 8007:3000 #optional
     restart: unless-stopped
