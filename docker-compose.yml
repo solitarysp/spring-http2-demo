@@ -31,7 +31,7 @@ services:
     volumes:
       - ./http2-h2/build/app.jar:/data/projects/app/app.jar
     ports:
-      - 8004:8080
+      - 8004:443
     restart: always
     networks:
       web-demo:
